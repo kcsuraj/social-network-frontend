@@ -1,19 +1,7 @@
 import './helloView';
+import { Router } from '@vaadin/router';
 
-class RootApp extends HTMLElement {
-  private helloViewEl: HTMLElement | null = null;
+const rootEl = document.getElementById('root');
 
-  constructor() {
-    super();
-    const shadow = this.attachShadow({ mode: 'closed' });
-    this.helloViewEl = document.createElement('hello-view');
-    shadow.appendChild(this.helloViewEl);
-  }
-
-  public disconnectedCallback() {
-    if (this.helloViewEl === null) {
-      return;
-    }
-  }
-}
-window.customElements.define('root-app', RootApp);
+const router = new Router(rootEl);
+router.setRoutes([{ path: '/', component: 'hello-view' }]);
